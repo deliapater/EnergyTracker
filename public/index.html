@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Country's Energy Consumption</title>
+	<script src="./js/bundle.js"></script>
+</head>
+<body>
+	<div id="app">
+
+		<h1 v-if="from && to">Generation Mix for the GB power system for {{from.toLocaleString()}} to {{to.getHours()+":"+to.getMinutes()}}</h1>
+
+		<ul id="generationData"/>
+		<li v-for="mix in fuelMix">
+			{{mix.fuel.toUpperCase()}}: {{mix.perc}}%
+		</li>
+	</ul>
+
+	<GChart
+			v-if="chartData"
+			type="PieChart"
+			:data="chartData"
+			:options="chartOptions"
+	/>
+
+</div>
+
+</body>
+</html>
